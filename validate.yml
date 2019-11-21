@@ -1,0 +1,20 @@
+- name: validate
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: gather fast
+      ec2_elb_facts:
+        region: ap-south-1
+        name: 
+      register: elb_facts
+
+    - debug:
+       msg: "{{  elb_facts.elbs.0.dns_name }}"
+    - uri:
+       url: http://{{ elb_facts.0.dns_name }}
+       return_content: yes
+      register: this
+      failed_when: "hello from ags"
+
+
+

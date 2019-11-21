@@ -1,0 +1,13 @@
+- name: create ec2 launch config
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: ec2 lc create
+    ec2_lc:
+     name: "{(launch_config)}"
+     image_id: ami-08ddb3f251a88cf33
+     instance_type: t2.micro
+     key_name: ravi
+     security_group: {'default'}
+     region: ap-south-1
+     user_date_path: /home/ubuntu/user_data

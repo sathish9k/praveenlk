@@ -1,0 +1,17 @@
+- name: create auto scaling group
+  hosts: localhost
+  connection: local
+  tasks:
+   - name: create auto scaling group     
+     region: ap-south-1a
+     load_balencers: raviteja
+     availability_zones: ap-south-1a   
+     launch_config_name: "{( launch_config )}"
+     min_size: 1   
+     max_size: 1
+     desired_capacity: 1
+     replace_all_instances: yes  
+     vpc_zone_identifier: subnet-2fc3e647
+     tags:      
+       - type: praveen
+     wait_for_instances: yes    
